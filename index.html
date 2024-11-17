@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polyphonic Physics</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            background: #1a1a1a;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        canvas {
+            border: 2px solid #333;
+            background: #000;
+            margin: 20px 0;
+        }
+        .controls {
+            display: flex;
+            gap: 20px;
+            padding: 20px;
+            background: #2a2a2a;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 800px;
+        }
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            min-width: 180px;
+        }
+        .knob-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+        .knob {
+            width: 60px;
+            height: 60px;
+            background: #333;
+            border-radius: 50%;
+            position: relative;
+            cursor: pointer;
+            border: 2px solid #444;
+        }
+        .knob::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 2px;
+            height: 20px;
+            background: white;
+            transform-origin: bottom;
+        }
+        label {
+            font-size: 12px;
+            text-align: center;
+        }
+        input[type="range"] {
+            width: 150px;
+        }
+        .slider-value {
+            font-size: 12px;
+            min-width: 30px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="gameCanvas" width="800" height="600"></canvas>
+    <div class="controls">
+        <div class="control-group">
+            <label>Master Volume</label>
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <input type="range" id="volumeSlider" min="0" max="100" value="50">
+                <span class="slider-value" id="volumeValue">50%</span>
+            </div>
+        </div>
+        <div class="control-group">
+            <label>Bounce Factor</label>
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <input type="range" id="bounceSlider" min="0" max="100" value="50">
+                <span class="slider-value" id="bounceValue">50%</span>
+            </div>
+        </div>
+        <div class="control-group">
+            <label>Drop Speed</label>
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <input type="range" id="speedSlider" min="5" max="50" value="20">
+                <span class="slider-value" id="speedValue">20</span>
+            </div>
+        </div>
+        <div class="control-group">
+            <label>Waveform Controls</label>
+            <div style="display: flex; gap: 15px;">
+                <div class="knob-container">
+                    <div class="knob" id="harmonicKnob" data-value="50"></div>
+                    <label>Harmonic</label>
+                </div>
+                <div class="knob-container">
+                    <div class="knob" id="detuneKnob" data-value="50"></div>
+                    <label>Detune</label>
+                </div>
+                <div class="knob-container">
+                    <div class="knob" id="attackKnob" data-value="50"></div>
+                    <label>Attack</label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="audio.js"></script>
+    <script src="ball.js"></script>
+    <script src="game.js"></script>
+</body>
+</html>
